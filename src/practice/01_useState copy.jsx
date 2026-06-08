@@ -12,8 +12,22 @@ import { useState } from "react";
 
 // ─── 1. Counter ──────────────────────────────────────────────────────────────
 export function Counter() {
- co
+  const [count, setCount] = useState(0);
 
+  // Functional updater guarantees you're working off the latest value.
+  // Always prefer this when the new state depends on the old one.
+  const increment = () => setCount((prev) => prev + 1);
+  const decrement = () => setCount((prev) => prev - 1);
+  const reset = () => setCount(0);
+
+  return (
+    <div>
+      <h2>Counter: {count}</h2>
+      <button onClick={decrement}>-</button>
+      <button onClick={reset}>Reset</button>
+      <button onClick={increment}>+</button>
+    </div>
+  );
 }
 
 // ─── 2. Toggle ───────────────────────────────────────────────────────────────
@@ -22,7 +36,7 @@ export function Toggle() {
 
   return (
     <div>
-      <h1>The light is {isOn ? 'ON' : 'OFF'}</h1>
+      <p>The light is {isOn ? "ON 💡" : "OFF 🌑"}</p>
       <button onClick={() => setIsOn((prev) => !prev)}>Toggle</button>
     </div>
   );
